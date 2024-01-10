@@ -14,14 +14,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_bold"
-        android:text="@string/login"
+        android:text="Create Account"
         android:textColor="@color/black"
         android:textSize="36sp"
         android:textStyle="bold" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Please sign in to continue"
+        android:text="Fill up forms to create account"
         android:textSize="14sp"/>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -56,13 +56,31 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:startIconDrawable="@drawable/lock"
+        app:endIconMode="password_toggle"
+        android:hint="Confirm Password">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_confirm_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:backgroundTint="@color/transparent" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingVertical="15dp"
-        android:text="Login"
+        android:layout_marginTop="10dp"
+        android:text="Create Account"
         app:cornerRadius="10dp"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -73,23 +91,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Haven't an account yet? "/>
+            android:text="Have an account? "/>
         <TextView
-            android:id="@+id/tv_signup"
+            android:id="@+id/tv_signin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textColor="@color/yellow"
-            android:text="Sign up"/>
+            android:text="Sign in"/>
     </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Forgot Password"
-        android:gravity="center"
-        android:layout_marginTop="5dp"
-        android:textStyle="bold"
-        android:textColor="@color/yellow"/>
 
 </LinearLayout>
