@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "828727921575",
+    "project_id": "sustainabyte-6c021",
+    "storage_bucket": "sustainabyte-6c021.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:828727921575:android:40b1e1a973e4c9c2a80482",
+        "android_client_info": {
+          "package_name": "com.example.sustainabyte"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvd8AAtbxunIos62ub3KKyw6iOETbEXhw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
