@@ -3,6 +3,7 @@
     <style name="Base.Theme.Sustainabyte" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/yellow</item>
         <item name="android:statusBarColor">@color/transparent</item>
     </style>
 </resources>
