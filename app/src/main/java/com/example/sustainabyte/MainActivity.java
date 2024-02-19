@@ -1,14 +1,23 @@
 package com.example.sustainabyte;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private TextInputEditText et_email,et_password;
     private TextView tv_signup;
     private FirebaseAuth mAuth;
+//    private DatabaseReference usersRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         initialize();
         listener();
+
     }
     //binding views
     private void initialize() {
@@ -31,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         et_password = findViewById(R.id.et_password);
         btn_login = findViewById(R.id.btn_login);
         mAuth = FirebaseAuth.getInstance();
+//        usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
     }
 
     private void listener() {
@@ -61,6 +73,31 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
     }
+
+//    private void retrieveUserData() {
+//        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+//        if (currentUser != null) {
+//            String currentUserId = currentUser.getUid();
+//            usersRef.child(currentUserId).addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                    String username = dataSnapshot.child("username").getValue(String.class);
+//                    String email = dataSnapshot.child("email").getValue(String.class);
+//
+//                    // Cache the retrieved data
+//                    UserDataManager.getInstance().setUserData(username, email);
+//
+//                }
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError databaseError) {
+//                    // Handle database error
+//                    Log.e("FirebaseError", "Error retrieving data: " + databaseError.getMessage());
+//                }
+//            });
+//        } else {
+//            Toast.makeText(this, "Authentication Problem", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
 
 }
