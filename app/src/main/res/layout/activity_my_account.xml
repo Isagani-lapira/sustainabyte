@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="HardCodedText"
+    tools:context=".MyAccountActivity"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/transparent">
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="16dp"
+            android:src="@drawable/round_arrow_back_24" />
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/poppins_bold"
+            android:text="My Account"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:textAppearance="?android:attr/textAppearanceListItem"
+        android:padding="0dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:id="@+id/tv_username"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:padding="16dp"
+            android:fontFamily="@font/poppins_semibold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/username"
+            android:textSize="16sp"
+            android:gravity="right"
+            android:textColor="@color/black"
+            android:padding="16dp"
+            android:fontFamily="@font/poppins"
+            tools:ignore="RtlHardcoded" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:textAppearance="?android:attr/textAppearanceListItem"
+        android:padding="0dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:id="@+id/tv_email"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:padding="16dp"
+            android:fontFamily="@font/poppins_semibold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/email"
+            android:textSize="16sp"
+            android:gravity="right"
+            android:textColor="@color/black"
+            android:padding="16dp"
+            android:fontFamily="@font/poppins"
+            tools:ignore="RtlHardcoded" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:textAppearance="?android:attr/textAppearanceListItem"
+        android:padding="0dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Change Password"
+            android:id="@+id/tv_changePass"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:padding="16dp"
+            android:fontFamily="@font/poppins_semibold"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:textAppearance="?android:attr/textAppearanceListItem"
+        android:padding="0dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Delete Account"
+            android:id="@+id/tv_deleteAcc"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:padding="16dp"
+            android:fontFamily="@font/poppins_semibold"/>
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+</LinearLayout>
