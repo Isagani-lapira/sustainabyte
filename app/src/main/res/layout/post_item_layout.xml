@@ -1,0 +1,117 @@
+<!-- post_item_layout.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp">
+        <!-- User Icon -->
+        <ImageView
+            android:id="@+id/image_user_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="user icon"/>
+
+        <!-- Username -->
+        <TextView
+            android:id="@+id/text_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="username"
+            tools:ignore="HardcodedText"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_semibold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp">
+        <!-- Post Title -->
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Post Title"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_bold"
+            />
+
+        <!-- Post Content -->
+        <TextView
+            android:id="@+id/text_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Post Content"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins" />
+    </LinearLayout>
+
+    <!-- Action Buttons (Upvotes and Comments) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/btn_upvote"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/favorite_border_black_24dp"
+                android:contentDescription="upvote"
+                android:background="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/text_upvotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="24 likes"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/black"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/btn_comment"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/chat_bubble_outline_black_24dp"
+                android:contentDescription="comment"
+                android:background="@color/white"
+                android:layout_marginStart="16dp"/>
+
+            <TextView
+                android:id="@+id/text_comments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3 comments"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/black"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

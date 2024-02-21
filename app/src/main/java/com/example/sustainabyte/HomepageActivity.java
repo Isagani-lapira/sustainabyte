@@ -93,6 +93,7 @@ public class HomepageActivity extends AppCompatActivity {
 
                     // Cache the retrieved data
                     UserDataManager.getInstance().setUserData(username, email,icon);
+                    UserDataManager.getInstance().setUserId(currentUserId); // Set the user_id
 
                 }
                 @Override

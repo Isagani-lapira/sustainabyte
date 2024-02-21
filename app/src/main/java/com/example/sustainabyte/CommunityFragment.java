@@ -1,64 +1,120 @@
 package com.example.sustainabyte;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CommunityFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.button.MaterialButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class CommunityFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private RecyclerView recyclerView;
+    private PostAdapter postAdapter;
+    private List<Post> postList;
+    private MaterialButton createPostBtn; // Declaration of MaterialButton
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private DatabaseReference databaseReference;
 
     public CommunityFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CommunityFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CommunityFragment newInstance(String param1, String param2) {
-        CommunityFragment fragment = new CommunityFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_community, container, false);
+        View view = inflater.inflate(R.layout.fragment_community, container, false);
+
+        // Initialize the createPostBtn after inflating the layout
+        createPostBtn = view.findViewById(R.id.createPostBtn);
+
+        // Set OnClickListener for createPostBtn
+        createPostBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start CreatePostActivity
+                Intent intent = new Intent(getActivity(), CreatePostActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        recyclerView = view.findViewById(R.id.recycler_view_posts);
+        postList = new ArrayList<>();
+        postAdapter = new PostAdapter(getContext(), postList);
+        recyclerView.setAdapter(postAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("posts");
+
+        // Retrieve posts from the database
+        // Retrieve posts from the database
+        // Retrieve posts from the database
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                postList.clear(); // Clear existing posts before adding new ones
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    // Extract post data from the snapshot
+                    String title = snapshot.child("title").getValue(String.class);
+                    String content = snapshot.child("content").getValue(String.class);
+                    String authorId = snapshot.child("author").getValue(String.class);
+                    long timestamp = snapshot.child("timestamp").getValue(Long.class);
+                    int like = snapshot.child("like").getValue(Integer.class);
+                    String comment = "0";
+
+                    // Fetch username and icon URL based on authorId
+                    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("Users").child(authorId);
+                    userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                String username = dataSnapshot.child("username").getValue(String.class);
+                                String iconUrl = dataSnapshot.child("icon").getValue(String.class);
+
+                                // Create a Post object and add it to the postList
+                                Post post = new Post(iconUrl, username, title, content, (int) like, timestamp, comment);
+                                postList.add(post);
+
+                                // Notify the adapter that the dataset has changed
+                                postAdapter.notifyDataSetChanged();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            // Handle database error
+                            Toast.makeText(getContext(), "Failed to retrieve user data: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle database error
+                Toast.makeText(getContext(), "Failed to retrieve posts: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+        return view;
     }
 }
