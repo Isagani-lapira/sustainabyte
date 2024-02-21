@@ -8,6 +8,8 @@ public class UserDataManager {
     private String email;
     private String icon;
 
+    private String userId;
+
     private UserDataManager() {
         // Private constructor to prevent instantiation from outside
     }
@@ -39,6 +41,14 @@ public class UserDataManager {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
 }
